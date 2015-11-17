@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-  cout << "Running tests from: " << __FILE__ << endl;
+  cerr << "Running tests from: " << __FILE__ << endl;
   
   std::string sampleText = "This test isn't a difficult 'test' is it?";
   WordCounter wc(sampleText);

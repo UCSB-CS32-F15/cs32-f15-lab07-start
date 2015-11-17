@@ -1,28 +1,30 @@
 #include "tddFuncs.h"
 #include <iostream>
 #include <cstring>
-using std::cout;
+using std::cerr;
 using std::endl;
 
 void assertEquals(const char * const expected, 
 		  const char * const actual, 
 		  std::string message) {
   if ( !strcmp(expected,actual) ) {  // if they are equal
-    cout << "PASSED: " << message << endl;;
+    cerr << "PASSED: " << message << endl;;
   } else {
-    cout << "   FAILED: " << message << endl 
+    cerr << "   FAILED: " << message << endl 
 	 << "     Expected: " << expected << " Actual: " << actual << endl; 
   }
 }
+
+
 
 void approxEquals(double expected, 
 			      double actual, 
 				  double tolerance,
 				  std::string message) {
   if (fabs(expected-actual) <= tolerance) {
-    std::cout << "PASSED: " << message << std::endl;;
+    std::cerr << "PASSED: " << message << std::endl;;
   } else {
-    std::cout << "   FAILED: " << message << std::endl
+    std::cerr << "   FAILED: " << message << std::endl
 	      << "     Expected: "  << expected << " Actual: " << actual << " Tolerance: " << tolerance << std::endl; 
   }
 }
@@ -37,9 +39,9 @@ void assertEquals(const char * const expected,
 void assertTrue(bool expression,
 		  std::string message) {
   if (expression) {
-    cout << "PASSED: " << message << endl;;
+    cerr << "PASSED: " << message << endl;;
   } else {
-    cout << "   FAILED: " << message << endl 
+    cerr << "   FAILED: " << message << endl 
 	 << "     Expected true, but was false " << endl;
   }
 }

@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-  cout << "Running tests from: " << __FILE__ << endl;
+  cerr << "Running tests from: " << __FILE__ << endl;
   
   // Text from sample Reddit post:
   // http://www.reddit.com/r/UCSantaBarbara/comments/33eihe/how_bad_would_it_be_to_miss_a_dance_45_concert/

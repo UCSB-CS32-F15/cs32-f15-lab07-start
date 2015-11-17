@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  cout << "Running tests from: " << __FILE__ << endl;
+  cerr << "Running tests from: " << __FILE__ << endl;
   
   ASSERT_EQUALS("foo",WordCounter::stripWord(".foo"));
   ASSERT_EQUALS("bar",WordCounter::stripWord("bar?"));

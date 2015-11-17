@@ -29,11 +29,7 @@ TFIDF_HEAP_TESTS= testTfIdfHeap00 testTfIdfHeap01
 
 CORPUS_TESTS= testCorpus00 testCorpus01 testCorpus02 testCorpus03 
 
-INTEGRATION_TESTS= \
-	integrationTest00 \
-	integrationTest01 \
-	integrationTest02 \
-	integrationTest03
+INTEGRATION_TESTS= integrationTest00 
 
 TESTS=	${WORD_COUNTER_TESTS} \
 	${REDDIT_POST_TESTS} \
@@ -42,8 +38,6 @@ TESTS=	${WORD_COUNTER_TESTS} \
 	${TFIDF_HEAP_TESTS} \
 	${CORPUS_TESTS} \
 	${INTEGRATION_TESTS}          
-
-
 
 BINARIES= ${TESTS} \
 	CurlPPDemo00 \
@@ -61,32 +55,25 @@ wordCounterTests: ${WORD_COUNTER_TESTS}
 redditPostTests: ${REDDIT_POST_TESTS}
 	for test in $^; do ./$$test; done
 
-#	./testWordCounter00
-#	./testWordCounter01
-#	./testWordCounter02
+tfIdfDocumentTests: ${TFIDF_DOCUMENT_TESTS}
+	for test in $^; do ./$$test; done
+
+wordHeapTests: ${WORD_HEAP_TESTS}
+	for test in $^; do ./$$test; done
+
+tfIdfHeapTests: ${TFIDF_HEAP_TESTS}
+	for test in $^; do ./$$test; done
+
+corpusTests: ${CORPUS_TESTS}
+	for test in $^; do ./$$test; done
+
+integrationTests: ${INTEGRATION_TESTS}
+	for test in $^; do ./$$test; done
 
 test: tests
 
-tests: wordCounterTests
-	./testRedditPost01
-	./testRedditPost02
-	./testTfIdfDocument00
-	./testTfIdfDocument01
-	./testTfIdfDocument02
-	./testTfIdfDocument03
-	./testWordHeap00
-	./testWordHeap01
-	./testTfIdfHeap00
-	./testTfIdfHeap01
-	./testCorpus00
-	./testCorpus01
-	./testCorpus02
-	./testCorpus03
-	./integrationTest00
-	./integrationTest01
-	./integrationTest02
-	./integrationTest03
-
+tests: ${TESTS}
+	for test in $^; do ./$$test; done
 
 CurlPPDemo00: CurlPPDemo00.o 
 	${CXX} $^ ${LINK_CURLPP}  -o $@
@@ -149,15 +136,6 @@ testCorpus03: testCorpus03.o tddFuncs.o Corpus.o WordCounter.o
 	${CXX} $^ -o $@
 
 integrationTest00: integrationTest00.o  RedditPost.o WordCounter.o tddFuncs.o
-	${CXX} $^ ${LINK_CURLPP} ${LINK_JSONCPP}  -o $@
-
-integrationTest01: integrationTest01.o  RedditPost.o WordCounter.o tddFuncs.o
-	${CXX} $^ ${LINK_CURLPP} ${LINK_JSONCPP}  -o $@
-
-integrationTest02: integrationTest02.o  RedditPost.o WordCounter.o tddFuncs.o
-	${CXX} $^ ${LINK_CURLPP} ${LINK_JSONCPP}  -o $@
-
-integrationTest03: integrationTest03.o  RedditPost.o WordCounter.o tddFuncs.o
 	${CXX} $^ ${LINK_CURLPP} ${LINK_JSONCPP}  -o $@
 
 DownloadOnePageRedditPosts: DownloadOnePageRedditPosts.o RedditPost.o  RedditPostDownloader.o
