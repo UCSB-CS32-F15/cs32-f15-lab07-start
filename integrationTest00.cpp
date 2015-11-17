@@ -51,7 +51,7 @@ int main() {
     "Reminder: Tomorrow (11/12) Is the Last Day to Change Grading Option for Classes";
   
   ASSERT_EQUALS(size_t(10),tenPosts.size());
-  ASSERT_EQUALS("t3_3rlph8",urlPagingSuffix);
+  ASSERT_EQUALS("&after=t3_3rlph8",urlPagingSuffix);
   ASSERT_EQUALS_UNLESS(expectedFirstPostTitle,
 		       tenPosts[0].getTitle(),
 		       tenPosts.size()<1);
@@ -61,7 +61,7 @@ int main() {
     urlPagingSuffix,100);
   
   ASSERT_EQUALS(size_t(24),posts.size());
-  ASSERT_EQUALS("t3_3rlph8",urlPagingSuffix);
+  ASSERT_EQUALS("&after=t3_3rlph8",urlPagingSuffix);
   ASSERT_EQUALS_UNLESS(expectedFirstPostTitle,
 		       posts[0].getTitle(),
 		       posts.size()<1);
