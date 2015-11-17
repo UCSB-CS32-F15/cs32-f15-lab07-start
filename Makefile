@@ -9,36 +9,61 @@ CXXFLAGS = -g -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-private
 
 #CXXFLAGS = -std=c++11 -Wall -Wextra -Werror
 
-
-
 LINK_JSONCPP= -ljsoncpp
 
 LINK_CURLPP= -Wl,-Bsymbolic-functions -Wl,-z,relro -lcurlpp -lstdc++ -lcurl
 
-WORD_COUNTER_TESTS=testWordCounter00  testWordCounter01 testWordCounter02 
+WORD_COUNTER_TESTS= testWordCounter00 testWordCounter01 testWordCounter02 
+
+REDDIT_POST_TESTS= testRedditPost00 testRedditPost01 testRedditPost02 
+
+TFIDF_DOCUMENT_TESTS= \
+	testTfIdfDocument00 \
+	testTfIdfDocument01 \
+	testTfIdfDocument02 \
+	testTfIdfDocument03 
+
+WORD_HEAP_TESTS=  testWordHeap00 testWordHeap01
+
+TFIDF_HEAP_TESTS= testTfIdfHeap00 testTfIdfHeap01 	      
+
+CORPUS_TESTS= testCorpus00 testCorpus01 testCorpus02 testCorpus03 
+
+INTEGRATION_TESTS= \
+	integrationTest00 \
+	integrationTest01 \
+	integrationTest02 \
+	integrationTest03
 
 TESTS=	${WORD_COUNTER_TESTS} \
-	testRedditPost00 testRedditPost01  testRedditPost02 \
-	testTfIdfDocument00 testTfIdfDocument01 \
-	testTfIdfDocument02 testTfIdfDocument03 \
-	testWordHeap00 testWordHeap01 \
-	testTfIdfHeap00 testTfIdfHeap01 \
-	testCorpus00 testCorpus01 testCorpus02 testCorpus03 \
-	integrationTest00 integrationTest01 integrationTest02 integrationTest03
+	${REDDIT_POST_TESTS} \
+	${TFIDF_DOCUMENT_TESTS} \
+	${WORD_HEAP_TESTS} \
+	${TFIDF_HEAP_TESTS} \
+	${CORPUS_TESTS} \
+	${INTEGRATION_TESTS}          
+
 
 
 BINARIES= ${TESTS} \
 	CurlPPDemo00 \
-	DownloadOnePageRedditPosts  DownloadRedditPosts DownloadAllUCsRedditPosts \
-	ComputeTwoUCsFromOfflineData ComputeAllUCsFromOfflineData
+	DownloadOnePageRedditPosts \
+	DownloadRedditPosts \
+	DownloadAllUCsRedditPosts \
+	ComputeTwoUCsFromOfflineData \
+	ComputeAllUCsFromOfflineData
 
 all: ${BINARIES}
 
 wordCounterTests: ${WORD_COUNTER_TESTS}
-	./testWordCounter00
-	./testWordCounter01
-	./testWordCounter02
+	for test in $^; do ./$$test; done
 
+redditPostTests: ${REDDIT_POST_TESTS}
+	for test in $^; do ./$$test; done
+
+#	./testWordCounter00
+#	./testWordCounter01
+#	./testWordCounter02
 
 test: tests
 
